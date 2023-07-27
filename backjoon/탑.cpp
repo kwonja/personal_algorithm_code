@@ -5,7 +5,7 @@ int main(void)
 {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
-	vector<pair<int,int>> stack;
+	vector<pair<int, int>> stack;
 	vector<int> seq;
 	int k, input;
 	cin >> k;
@@ -14,10 +14,6 @@ int main(void)
 	for (int i = 0; i < k; i++)
 	{
 		cin >> input;
-		if (stack.empty())
-		{
-			stack.push_back(make_pair(i+1, input));
-		}
 
 		while (!stack.empty() && (stack.back().second < input))
 		{
@@ -39,7 +35,5 @@ int main(void)
 		cout << i << " ";
 	}
 
-
 	return 0;
 }
-//stack이 비었을때 원소비교를 하는것을 막는게 포인트라고 생각한다.
