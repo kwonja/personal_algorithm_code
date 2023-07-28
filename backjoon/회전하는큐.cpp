@@ -17,11 +17,11 @@ int main(void) {
 	{
 		cin >> k;
 
-		for (int j = 0; j < m; j++)
+		for (int j = 0; j < deq.size(); j++)
 		{
 			if (deq[j] == k) target = j;
 		}
-		if(target < deq.size()-target)
+		if (target < deq.size() - target)
 		{
 			for (int g = 0; g < target; g++)
 			{
@@ -45,7 +45,13 @@ int main(void) {
 		deq.front();
 		deq.pop_front();
 	}
-	cout<<count;
+	cout << count;
 
 	return 0;
 }
+
+//O(n)은 대략 n이 천만개이하
+//O(n^2)은 대략 n이 5천개이하일때
+//O(n^2)은 대략 n이 5백개 이하일때
+//1초안에 돌아간다
+//해당 문제는 2초의 시간이 주어지고 n이 50이하라서 n^3 풀이식이라도 통과하는것을 볼 수 있었다.
