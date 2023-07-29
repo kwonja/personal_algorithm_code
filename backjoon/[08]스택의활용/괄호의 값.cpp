@@ -24,57 +24,26 @@ int main(void) {
 		}
 		else if (str[i] == ')')
 		{
-			if (!stk.empty())
-			{
-				if ((i != 0) && (str[i - 1] == ')' || str[i - 1] == ']') && stk.top() == '(')
-				{
-					c = c / 2;
-				}
-				else if (stk.top() == '(')
-				{
-					count += c;
-					c = c / 2;
-				}
-				else
+				if (stk.empty() || stk.top() !='(')
 				{
 					error = true;
 					break;
 				}
-			}
-			else
-			{
-				error = true;
-				break;
-			}
-			stk.pop();
+				if (str[i - 1] == '(') count += c;
+				stk.pop();
+				c = c / 2;
 		}
 		else if (str[i] == ']')
 		{
-			if (!stk.empty())
-			{
-				if ((i != 0) && (str[i - 1] == ')' || str[i - 1] == ']') && stk.top() == '[')
-				{
-					c = c / 3;
-				}
-				else if (stk.top() == '[')
-				{
-					count += c;
-					c = c / 3;
-				}
-				else
-				{
-					error = true;
-					break;
-				}
-			}
-			else
+			if (stk.empty() || stk.top() != '[')
 			{
 				error = true;
 				break;
 			}
+			if (str[i - 1] == '[') count += c;
 			stk.pop();
+			c = c / 3;
 		}
-		else error = true;
 	}
 	if (!stk.empty()) error = true;
 
@@ -82,3 +51,11 @@ int main(void) {
 	else cout << count;
 	return 0;
 }
+
+//숫자를 더하는것을 top라이브러리를 통해 구현했었는데
+//그렇게되면 예외처리를 따로 해줘야하는 단점발생
+//아래 두가지를 기억하자
+// 스택이 비어있을때 ] 에러
+// 스택이 안비어있는데 top이 괄호쌍이 아닐때 에러
+// 괄호쌍이 맞다면 pop
+// 마지막에 스택에 남아있다면 에러
