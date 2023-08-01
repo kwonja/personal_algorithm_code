@@ -47,7 +47,7 @@ void colorbfs(int x, int y)
 		}
 	}
 }
-
+//커밋테스트
 int main(void) {
 	ios::sync_with_stdio(0);
 	cin.tie(0);
