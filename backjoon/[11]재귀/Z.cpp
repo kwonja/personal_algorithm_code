@@ -22,3 +22,10 @@ int main()
 
 	return 0;
 }
+
+//base condition n==0 일때 return 0
+// 1번일때
+// 2번일때
+// 3번일때
+// 4번일때
+// 각각나눠서 진행하면 좋다.
