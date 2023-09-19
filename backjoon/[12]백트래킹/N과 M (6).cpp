@@ -1,10 +1,11 @@
 #include <bits/stdc++.h>
 using namespace std;
-int n, m;
+int m, n;
+int visitied[8] = { 0, };
 int arr[8] = { 0, };
 int store[8] = { 0, };
-int visited[8] = { 0, };
-void func(int cnt)
+
+void func(int cnt, int num)
 {
 	if (cnt == m)
 	{
@@ -17,13 +18,14 @@ void func(int cnt)
 	}
 	for (int i = 0; i < n; i++)
 	{
-		if (visited[i])continue;
+		if (i < num || visitied[i])continue; //오름차순으로 정렬했기때문에 
 		store[cnt] = arr[i];
-		visited[i] = 1;
-		func(cnt + 1);
-		visited[i] = 0;
+		visitied[i] = 1;
+		func(cnt + 1, i);
+		visitied[i] = 0;
 	}
 }
+
 int main()
 {
 	ios::sync_with_stdio(0);
@@ -34,7 +36,6 @@ int main()
 		cin >> arr[i];
 	}
 	sort(arr, arr + n);
-	func(0);
-
+	func(0, 0);
 	return 0;
 }
