@@ -1,26 +1,10 @@
 function solution(s){
-    var answer = true;
-    let stack=[];
-    for(let i=0;i<s.length;i++)
-    {
-        if(s[i]==='(')
-        {
-          stack.push(s[i]);      
-        }
-        else
-        {
-            if(stack.length)stack.pop();
-            else{
-                answer=false;
-                break;
-            }
+    let cum = 0
+    for (let paren of s) {
+        cum += paren === '('? 1: -1
+        if(cum < 0) {
+            return false
         }
     }
-    
-    if(stack.length)
-    {
-        answer=false;
-    }
-
-    return answer;
+    return cum === 0? true: false;
 }
