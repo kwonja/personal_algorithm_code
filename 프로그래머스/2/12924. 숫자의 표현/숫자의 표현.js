@@ -1,17 +1,17 @@
 function solution(n) {
-   let answer=0;
+    let answer=0;
     
-    for(let i=1; i<=n;i++)
+    for(let i=1; i<=n/2;i++)
     {
-        let sum=0;
-        for(let j=i;j<=n;j++)
+        let num=i;
+        let temp=n;
+        while(temp > 0)
         {
-            sum+=j;
-            if(sum===n)answer++;
-            if(sum>n)break;
+            temp -=num++;
+            if(!temp) answer++;
         }
     }
-    return answer;
+    return answer+1;
 }
 
 
