@@ -1,23 +1,20 @@
 let answer=0;
 function solution(n) {
-    dfs(n,1,0,1);
     
-    return answer;
-    
-    
-    
-}
-
-
-
-function dfs(n,open,close,cnt)
-{
-    if(cnt===2*n){
-        answer++;
-        return;
+    let dp = new Array(n+1).fill(0);
+    dp[0]=1;
+    dp[1]=1;
+       
+    for(let i=2;i<=n;i++)
+    {
+        for(let j=0;j<i;j++)
+        {
+         dp[i]+=dp[i-j-1]*dp[j];        
+        }
     }
-    if(close>open)return;
     
-    if(open<n)dfs(n,open+1,close,cnt+1)
-    if(close<n)dfs(n,open,close+1,cnt+1)
+    return dp[n];
+    
+    
+    
 }
