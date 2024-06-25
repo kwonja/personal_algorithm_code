@@ -3,19 +3,14 @@ const input = fs.readFileSync("/dev/stdin").toString().trim().split("\n");
 
 let [n,m] = input[0].trim().split(" ");
 
-let board = new Array(n);
-let ghostBoard = new Array(n);
+let board = Array.from({ length: n }, () => new Array(m).fill(0));
+let ghostBoard = Array.from({ length: n }, () => new Array(m).fill(0));
 let hq =[];
 let gq=[];
 let dx = [1,-1,0,0];
 let dy = [0,0,1,-1];
 let endx,endy;
 //벽 : -1, 사람이동경로 : 1 //도착지 : 3
-for(let i=0;i<n;i++)
-{
-    board[i]= new Array(m);
-    ghostBoard[i] = new Array(m);
-}
 for(let i=1;i<=n;i++)
 {
     let inputArr = input[i].trim();
@@ -42,14 +37,15 @@ for(let i=1;i<=n;i++)
 }
 gbfs();
 bfs();
-if(board[endx][endy]>0)console.log("Yes")
+if(board[endx][endy]>0)console.log("Yes");
 else console.log("No");
 
 
 function gbfs(){
-    while(gq.length){
+    let gqStart = 0;
+    while(gqStart < gq.length){
         
-        let {x : curx, y : cury} = gq.shift();
+        let {x : curx, y : cury} = gq[gqStart++];
         for(let i=0;i<4;i++)
         {
             let nx = curx + dx[i];
@@ -63,9 +59,9 @@ function gbfs(){
 }
 //사람인 경우
 function bfs(){
-
-    while(hq.length){    
-    let {x : curx, y : cury} =hq.shift();
+    let hqStart = 0; 
+    while(hqStart < hq.length){  
+    let {x : curx, y : cury} =hq[hqStart++];
 
     if(curx === endx && cury ===endy)
     {
@@ -84,3 +80,7 @@ function bfs(){
         
 }
 }
+
+
+// q를 shift() 메소드는 O(N)의 시간복잡도를 가진다 이것을 인덱스로 직접 접근하게되면 O(1)에 접근할수 있다
+// 인덱스를 만큼 사용하지 않는 공간을 차지할 수 있겠지만 메모리가 넉넉하다면 충분히 좋은 접근 방법인것 같다.
