@@ -30,4 +30,4 @@ for(let i=1;i<=n;i++){
         arr[i][j]= Math.max(arr[i][j],arr[i-1][j]);
     }
 }
-console.log(arr[n][k]);
+console.log(Math.max(...arr[n]));
