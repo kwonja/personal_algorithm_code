@@ -18,16 +18,17 @@ arr.sort((a, b) => a - b);
 
 let start = 1;
 let end = arr[arr.length - 1] + 1;
-
-while (start + 1 < end) {
+let answer = 0;
+while (start <= end) {
   let mid = parseInt((start + end) / 2);
   //n개 보다 많이 나왔을때
   if (checkCnt(mid) >= n) {
-    start = mid;
-  } else end = mid;
+    answer = mid;
+    start = mid + 1;
+  } else end = mid - 1;
 }
 
-console.log(start);
+console.log(answer);
 
 function checkCnt(value) {
   let cnt = 0;
